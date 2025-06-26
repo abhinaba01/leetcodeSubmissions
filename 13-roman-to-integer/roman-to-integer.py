@@ -3,37 +3,28 @@ class Solution:
 
         n = len(s)
         ans = 0
-        for i in range(n):
 
-           
-            right = s[i+1] if i + 1 < n else " "
-            if s[i] == "I":
-                if right in "VX":
-                   ans -= 1
-                else:
-                    ans += 1
+        roman = {
+            'I': 1,
+            'V': 5,
+            'X':10,
+            'L':50,
+            'C':100,
+            'D':500,
+            'M':1000
+        }
+
+        for i in range(n-1):
+
+            if roman[s[i]] < roman[s[i+1]]:
+                ans -= roman[s[i]]
+            else:
+                ans += roman[s[i]]
                   
 
-            elif s[i] == "V":
-                ans += 5
-            elif s[i] == "X":
-                if right in "LC":
-                    ans -= 10
-                else:
-                    ans += 10
-            elif s[i] == 'L':
-                ans += 50
-            elif s[i] == "C":
-                if right in "DM":
-                    ans -= 100
-                else:
-                    ans += 100
-            elif s[i] == "D":
-                ans += 500
-            elif s[i] == "M":
-                ans += 1000
+            
 
-        return ans
+        return ans + roman[s[-1]]
             
 
 
