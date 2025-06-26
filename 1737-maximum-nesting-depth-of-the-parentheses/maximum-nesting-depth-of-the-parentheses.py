@@ -18,7 +18,7 @@ class Solution:
             if ch == '(':
                 count += 1
             elif ch == ')':
-                maxCount = max(maxCount,count)
+                maxCount = maxCount if maxCount > count else count
                 count -= 1
         
         return maxCount
