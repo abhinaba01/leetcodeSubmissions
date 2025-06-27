@@ -21,12 +21,9 @@ class Solution:
 
         
         nOdd = n // 2
-        nEven = 0
+        nEven = (n + 1 )// 2
         res = 0
-        if n%2 == 0:
-            nEven = nOdd
-        else:
-            nEven = nOdd + 1
+        
 
         res = self.myPow(5,nEven) * self.myPow(4,nOdd)
         return res % (MOD)
