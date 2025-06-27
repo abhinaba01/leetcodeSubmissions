@@ -1,10 +1,9 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
+        
         maxProd = float("-inf")
         n = len(nums)
-        pref = 1
-        suff = 1
-        maxProd = float("-inf")
+        pref , suff = 1 , 1
         for i in range(n):
           
 
