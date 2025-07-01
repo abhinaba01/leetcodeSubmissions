@@ -9,10 +9,10 @@ class Solution:
             if num == 0 and target == 0:
                 ans.append(path[:])
                 return
-                
-         
-               
 
+            elif num < 0 or target < 0:
+                return
+                
             else:
                 for j in range(i,10):
                     path.append(j)
