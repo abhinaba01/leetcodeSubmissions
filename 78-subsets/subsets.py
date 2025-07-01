@@ -1,30 +1,21 @@
+
+
+
 class Solution:
-
-
-    def createsubSet(self,outer,nums):
-
-        if len(nums) == 0:
-            return []
-        el = nums[0]
-        n = len(outer)
-        for i in range(n):
-            internal = outer[i] + [el]
-            outer.append(internal)
-        temp = nums[1:]
-
-        self.createsubSet(outer,temp)
-
-
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        outer = [[]]
 
-        self.createsubSet(outer,nums)
-       
-        
-        return outer
-        
+        n = len(nums)
+        ans = []
+        path = []
 
-        
-            
+        def dfs(start):
+            ans.append(path[:])
+            if start == n:
+                return
+            for j in range(start,n):
+                path.append(nums[j])
+                dfs(j+1)
+                path.pop()
+        dfs(0)
+        return ans
 
-        
