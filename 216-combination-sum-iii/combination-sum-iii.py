@@ -16,7 +16,7 @@ class Solution:
             else:
                 for j in range(i,10):
                     path.append(j)
-                    print(path)
+                    
                     dfs(num-1,target-j,j+1)
                     path.pop()
 
