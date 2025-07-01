@@ -10,9 +10,7 @@ class Solution:
                 ans.append(path[:])
                 return
                 
-            elif num == 0 and target > 0:
-               
-                return
+         
                
 
             else:
