@@ -6,9 +6,9 @@ class Solution:
 
         prime = [1] * (n)
 
-        for i in range(2,n):
+        for i in range(2,(n//2 +1)):
             if prime[i] == 1:
-                for j in range(2*i,n,i):
+                for j in range(i*i,n,i):
                     prime[j] = 0
 
         return prime.count(1) - 2
