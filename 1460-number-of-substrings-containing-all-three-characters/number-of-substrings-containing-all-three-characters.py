@@ -10,8 +10,12 @@ class Solution:
         for i in range(n):
             hashMap[s[i]] = i
 
-            if hashMap["a"] != -1 and hashMap["b"] != -1 and hashMap["c"] != -1:
-                index = min(hashMap["a"],hashMap["b"],hashMap["c"])
+            a = hashMap["a"]
+            b = hashMap["b"]
+            c = hashMap["c"]
+
+            if a!= -1 and b!= -1 and  c!= -1:
+                index = min(a,b,c)
                 cnt += (index + 1)
 
         return cnt
