@@ -3,16 +3,16 @@ class Solution:
 
         n = len(s)
         cnt = 0
-        hashMap = {"a":-1,"b":-1,"c":-1}
+        lastSeen = {"a":-1,"b":-1,"c":-1}
 
 
            
         for i in range(n):
-            hashMap[s[i]] = i
+            lastSeen[s[i]] = i
 
-            a = hashMap["a"]
-            b = hashMap["b"]
-            c = hashMap["c"]
+            a = lastSeen["a"]
+            b = lastSeen["b"]
+            c = lastSeen["c"]
 
             if a!= -1 and b!= -1 and  c!= -1:
                 index = min(a,b,c)
