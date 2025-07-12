@@ -3,15 +3,17 @@ class Solution:
 
         intervals.sort(key = lambda item: item[1])
 
-        prev_end = float("-inf")
-        keep = 0
+        n = len(intervals)
 
-        for interval in intervals:
-            if interval[0] >= prev_end:
+        prev_end = 0
+        keep = 1
+
+        for i in range(1,n):
+            if intervals[i][0] >= intervals[prev_end][1]:
                 keep += 1
-                prev_end = interval[1]
+                prev_end = i
 
-        return (len(intervals) - keep)
+        return (n - keep)
 
         
 
