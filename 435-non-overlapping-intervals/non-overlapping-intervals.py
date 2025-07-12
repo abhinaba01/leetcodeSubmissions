@@ -3,15 +3,15 @@ class Solution:
 
         intervals.sort(key = lambda item: item[1])
 
-        present = float("-inf")
-        cnt = 0
+        prev_end = float("-inf")
+        keep = 0
 
         for interval in intervals:
-            if interval[0] >= present:
-                cnt += 1
-                present = interval[1]
+            if interval[0] >= prev_end:
+                keep += 1
+                prev_end = interval[1]
 
-        return (len(intervals) - cnt)
+        return (len(intervals) - keep)
 
         
 
