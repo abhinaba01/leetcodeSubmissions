@@ -1,4 +1,5 @@
 class Solution:
+    
     def minPathSum(self, grid: List[List[int]]) -> int:
 
         m = len(grid)
@@ -22,16 +23,23 @@ class Solution:
                 dp[i][j] =  (grid[i][j] + min(dfs(i,j+1) , dfs(i+1,j)))
                 return dp[i][j]
 
-            if i + 1 < m and j + 1 >=n:
-                dp[i][j] =  (grid[i][j] + dfs(i+1,j))
-                return dp[i][j]
+            else:
 
-            if j + 1 < n and i + 1 >= m:
-                dp[i][j] = (grid[i][j] + dfs(i,j+1))
-                return dp[i][j]
+                if  j + 1 >=n:
+                    dp[i][j] =  (grid[i][j] + dfs(i+1,j))
+                    return dp[i][j]
+
+                if i + 1 >= m:
+                    dp[i][j] = (grid[i][j] + dfs(i,j+1))
+                    return dp[i][j]
 
 
         return dfs(0,0)
 
+        
+        
+
+
+          
         
         
