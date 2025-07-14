@@ -29,6 +29,8 @@ class Solution:
             elif  i + 1 >= m:
                 dp[i][j] = (grid[i][j] + dfs(i,j+1))
                 return dp[i][j]
+            
+            return dp[i][j]
 
 
         return dfs(0,0)
