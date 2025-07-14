@@ -22,15 +22,13 @@ class Solution:
                 dp[i][j] =  (grid[i][j] + min(dfs(i,j+1) , dfs(i+1,j)))
                 return dp[i][j]
 
-            elif  j + 1 >=n:
+            if i + 1 < m and j + 1 >=n:
                 dp[i][j] =  (grid[i][j] + dfs(i+1,j))
                 return dp[i][j]
 
-            elif  i + 1 >= m:
+            if j + 1 < n and i + 1 >= m:
                 dp[i][j] = (grid[i][j] + dfs(i,j+1))
                 return dp[i][j]
-            
-            
 
 
         return dfs(0,0)
