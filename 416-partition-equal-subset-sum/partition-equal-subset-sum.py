@@ -13,7 +13,7 @@ class Solution:
         def dfs(i,currentSum):
 
             if currentSum == 0:
-                dp[(i,currentSum)] = True
+                
                 return True
 
             if (i,currentSum) in dp:
@@ -22,8 +22,6 @@ class Solution:
             if i == n or currentSum < 0:
                 return False
             
-           
-
             dp[(i,currentSum)] = dfs(i+1,currentSum-nums[i]) or dfs(i+1,currentSum)
             return dp[(i,currentSum)]
 
