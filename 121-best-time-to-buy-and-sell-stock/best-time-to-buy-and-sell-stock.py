@@ -6,8 +6,12 @@ class Solution:
         minPrice = float("inf")
         n = len(prices)
         for i in range(n):
-            minPrice = min(prices[i], minPrice)
-            maxProfit = max(maxProfit,prices[i] - minPrice)
+            if prices[i] < minPrice: 
+                minPrice = prices[i]
+            
+            currentProfit = prices[i] - minPrice
+            if currentProfit > maxProfit:
+                maxProfit = currentProfit
 
         return maxProfit
 
