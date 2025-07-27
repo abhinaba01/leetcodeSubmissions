@@ -5,9 +5,23 @@ class Solution:
 
         dp = [-1 for i in range(n+1)]
 
-        def isPalindrome(s:str):
-            return s == s[::-1]
+       
 
+        
+        is_pal = [[False] * n for _ in range(n)]
+
+        for i in range(n):
+            is_pal[i][i] = True  # single letters
+
+        for i in range(n - 1):
+            is_pal[i][i + 1] = (s[i] == s[i + 1])  # two-letter substrings
+
+        for length in range(3, n + 1):  # substrings of length >= 3
+            for i in range(n - length + 1):
+                j = i + length - 1
+                is_pal[i][j] = s[i] == s[j] and is_pal[i + 1][j - 1]
+
+    
         def dfs(i):
 
             if i == n: 
@@ -18,7 +32,7 @@ class Solution:
             
             minLength = float("inf")
             for k in range(i,n):
-                if isPalindrome(s[i:k+1]):
+                if is_pal[i][k]:
                     cost =  1 + dfs(k+1)
                     minLength = min(minLength,cost)
                     dp[i] = minLength
