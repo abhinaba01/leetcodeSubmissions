@@ -18,16 +18,17 @@ class Solution:
         vis = [False] * n
 
         res = []
-
+        cnt = 0
         for i in range(n):
             if not vis[i]:
                 component = []
 
                 dfs(i,isConnected,vis,component)
 
-                res.append(component)
+                if len(component) != 0:
+                    cnt += 1
 
-        return len(res)
+        return cnt
 
             
 
