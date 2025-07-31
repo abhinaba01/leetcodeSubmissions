@@ -23,7 +23,7 @@ class Solution:
         
         for i in range(n):
             if vis[i] == -1:
-                if not dfs(i,0):
+                if not dfs(i,1):
                     return False
         return True
         
