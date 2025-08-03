@@ -15,21 +15,22 @@ class Solution:
                 return 0
 
             left = dfs(node.left)
+            if left == -1:
+                return -1
             right = dfs(node.right)
+            if right == -1:
+                return -1
 
             n =  abs(left - right)
 
             if n > 1:
-                a = False
+                return -1
             
             return max(left,right) + 1
                 
 
-        dfs(root)  
-        if not a:
-            return False
-        else:
-            return True
+        return dfs(root) != -1  
+     
 
 
 
