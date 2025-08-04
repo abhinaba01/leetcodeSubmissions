@@ -13,17 +13,12 @@ class Solution:
             if node1 == None and node2== None:
                 return True
 
-            if node1 == None and node2 != None:
+            if not node1 or not node2:
                 return False
-            
-            if node1 != None and node2 == None:
-                return False
-
+                
             if node1.val != node2.val:
                 return False
 
-            if (node1.left != None and node2.left == None) or (node1.left == None and node2.left != None):
-                return False
             
            
             if not dfs(node1.left,node2.left):
