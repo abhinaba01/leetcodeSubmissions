@@ -18,16 +18,9 @@ class Solution:
                 
             if node1.val != node2.val:
                 return False
-
             
-           
-            if not dfs(node1.left,node2.left):
-                return False
-
-            if not dfs(node1.right,node2.right):
-                return False
-            
-            return True
+            return dfs(node1.left,node2.left) and dfs(node1.right,node2.right)
+              
         return dfs(p,q)
         
         
