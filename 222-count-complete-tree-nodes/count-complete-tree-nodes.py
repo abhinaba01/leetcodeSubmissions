@@ -7,18 +7,51 @@
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
 
-        queue = [root]
-        c  = 0
-        
-        while queue:
+        def heightLeft(node):
+            h = 0
+
+            while node:
+                h += 1
+                node = node.left
             
-            node = queue.pop(0)
-            if node:
-                c += 1
-                queue.append(node.left)
-                queue.append(node.right)
+            return h
+
+        def heightRight(node):
+            h = 0
+
+            while node:
+                h += 1
+                node = node.right
+            
+            return h
+
+        print(heightLeft(root))
+
+                
+
+        def count(node):
+
+            if not node:
+                return 0
+            
+            left_height = heightLeft(node) 
+            right_height = heightRight(node) 
+
+            if left_height == right_height:
+                return  (2 ** left_height) - 1
+            
+            else:
+                return 1 + count(node.left) + count(node.right)
         
-        return c
+        return count(root)
+            
+        
+        
+
+            
+
+
+   
 
 
         
