@@ -10,23 +10,13 @@ class Solution:
         if not root:
             return TreeNode(val)
 
-        def insert(node,val):
-            if not node:
-                return TreeNode(val)
+        else:
+            if root.val > val:
+                root.left = self.insertIntoBST(root.left,val)
             else:
-                if node.val > val:
-                    if not node.left:
-                        node.left = insert(node.left,val)
-                    else:
-                        insert(node.left,val)
-                else:
-                    if not node.right:
-                        node.right = insert(node.right,val)
-                    else:
-                        insert(node.right,val)
-            
-        insert(root,val)
+                root.right = self.insertIntoBST(root.right,val)
         return root
-
+                
+   
 
             
