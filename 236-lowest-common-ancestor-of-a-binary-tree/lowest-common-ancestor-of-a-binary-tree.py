@@ -18,9 +18,6 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-
-            if not left and not right:
-                return
             
             if left and right:
                 return node
