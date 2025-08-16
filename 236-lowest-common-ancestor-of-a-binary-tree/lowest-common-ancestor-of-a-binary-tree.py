@@ -10,8 +10,6 @@ class Solution:
 
         def dfs(node):
 
-            
-            
             if not node or node == p or node == q:
                 return node
          
