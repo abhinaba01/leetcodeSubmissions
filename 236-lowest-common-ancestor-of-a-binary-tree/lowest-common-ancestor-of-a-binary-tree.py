@@ -10,14 +10,11 @@ class Solution:
 
         def dfs(node):
 
-            if not node:
-                return
             
-            if node == p:
-                return p
-            if node == q:
-                return q
-
+            
+            if not node or node == p or node == q:
+                return node
+         
             left = dfs(node.left)
             right = dfs(node.right)
             
@@ -25,17 +22,11 @@ class Solution:
             if not left and not right:
                 return
             
-            if left:
-                if not right:
-                    return left
-                else:
-                    return node
-            
-            if right:
-                if not left:
-                    return right
-                else:
-                    return node
+            if left and right:
+                return node
+            else:
+                return left or right
+               
             
         return dfs(root)
                 
