@@ -10,7 +10,6 @@ class Solution:
             return None
 
         odd = head
-       
         even = odd.next
         even_start = even
 
