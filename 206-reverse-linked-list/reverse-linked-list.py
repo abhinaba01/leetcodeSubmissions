@@ -9,13 +9,10 @@ class Solution:
         prev = None
         curr = head
         while curr:
-           node = curr.next
-           curr.next = prev
-           prev = curr
-           curr = node
+            node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = node
         return prev
-
-            
-            
 
        
