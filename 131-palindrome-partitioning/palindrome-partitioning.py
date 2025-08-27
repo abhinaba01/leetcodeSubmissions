@@ -1,39 +1,35 @@
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
 
+        l = len(s)
         ans = []
 
-        def isPalindrome(path):
-            if path == path[::-1]:
-                return True
-            return False
-       
-
-        n = len(s)
+        def isPalindrome(s1:str):
+            return s1 == s1[::-1]
 
         def dfs(i,path):
-            if i == n:
+            if i == l:
 
                 for part in path:
-                    if isPalindrome(part) == False:
-                        return
+                    if not isPalindrome(part):
+                        return False
                 
-                    
-                        
                 ans.append(path[:])
-
-                return
+                return 
             
-            for j in range(i,n):
+            for j in range(i,l):
                 part = s[i:j+1]
                 path.append(part)
-                dfs(j+1, path)
+                dfs(j+1,path)
                 path.pop()
-                
-                
-
-
+        
         dfs(0,[])
         return ans
 
-       
+        
+
+        
+        
+
+
+        
