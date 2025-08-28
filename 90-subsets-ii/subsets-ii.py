@@ -3,18 +3,22 @@ class Solution:
         ans = []
         path = []
         n = len(nums)
+        nums.sort()
 
         def subsetHelper(i):
 
             if i >= n:
-                if sorted(path) not in ans:
-                   ans.append(sorted(path[:]))
+                if path not in ans:
+                   ans.append(path[:])
                 return
 
-            subsetHelper(i+1)
             path.append(nums[i])
             subsetHelper(i+1)
             path.pop()
+
+            while i + 1 < n and nums[i] == nums[i+1]:
+                i += 1
+            subsetHelper(i+1)
         
         subsetHelper(0)
         return ans
