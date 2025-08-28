@@ -8,8 +8,8 @@ class Solution:
         def subsetHelper(i):
 
             if i >= n:
-                if path not in ans:
-                   ans.append(path[:])
+    
+                ans.append(path[:])
                 return
 
             path.append(nums[i])
