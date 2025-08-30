@@ -2,27 +2,22 @@ class Solution:
     def maxScore(self, cardPoints: List[int], k: int) -> int:
 
         n = len(cardPoints)
-        subLen = n - k
-        l,r = 0, subLen
+        windowLen = n - k
+        l,r = 0, windowLen
 
-        sum_array = sum(cardPoints[0:subLen])
+        windowSum = sum(cardPoints[:windowLen])
         total_sum = sum(cardPoints)
-        minSum = sum_array
+        minSum = windowSum
 
-        
         while r < n:
 
-            sum_array += (cardPoints[r] - cardPoints[l])
-            minSum = min(minSum,sum_array)
+            windowSum += (cardPoints[r] - cardPoints[l])
+            minSum = min(minSum,windowSum)
 
             r += 1
             l += 1
         
         return total_sum - minSum
-
-
-            
-
 
 
         
