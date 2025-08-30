@@ -1,21 +1,19 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        # HashMap to store frequency of prefix sums
+        prefix_count = {0: 1}  
 
-        prefixSum = {}
-        n = len(nums)
-        prefixSum[0] = 1
-        preSum = 0
-        count = 0
+        current_sum = 0   # running prefix sum
+        subarray_count = 0  
 
-        for i in range(n):
-            preSum += nums[i]
+        for num in nums:
+            current_sum += num
 
-            if preSum - k in prefixSum:
-                count += prefixSum[preSum - k]
-            
-            prefixSum[preSum] = prefixSum.get(preSum,0) + 1
-        return count
+            # Check if there exists a prefix with sum = current_sum - k
+            if (current_sum - k) in prefix_count:
+                subarray_count += prefix_count[current_sum - k]
 
-       
+            # Record the current prefix sum
+            prefix_count[current_sum] = prefix_count.get(current_sum, 0) + 1
 
-        
+        return subarray_count
