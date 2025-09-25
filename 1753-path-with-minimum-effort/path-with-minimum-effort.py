@@ -25,7 +25,15 @@ class Solution:
 
         
         low = 0
-        high = 10 ** 6
+        high = max(
+    (abs(heights[r][c] - heights[r+dr][c+dc])
+     for r in range(rows)
+     for c in range(cols)
+     for dr, dc in neighbors
+     if 0 <= r+dr < rows and 0 <= c+dc < cols),
+    default=0
+)
+       
 
         while low < high:
             mid = (low + high) // 2
