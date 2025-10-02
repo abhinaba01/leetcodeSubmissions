@@ -3,8 +3,7 @@ class Solution:
 
         g.sort()
         s.sort()
-        count = 0
-       
+     
         ng = len(g)
         ns = len(s)
 
@@ -13,13 +12,11 @@ class Solution:
 
         while i < ng and j < ns:
             if s[j] >= g[i]:
-                count += 1
+                
                 i += 1
-                j += 1
-            else:
-                j += 1
+            j += 1
         
-        return count
+        return i
 
 
 
