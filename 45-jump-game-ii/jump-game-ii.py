@@ -1,17 +1,27 @@
 class Solution:
-    def jump(self, nums: List[int]) -> bool:
+    def jump(self, nums: List[int]) -> int:
+
         n = len(nums)
-    
-        max_farthest = 0
-        cnt = 0
-        current_end = 0
-        for i in range(n-1):
+        maxPos = n - 1
+        i = 0
+        count = 0
 
-            max_farthest = max(i+nums[i],max_farthest)
+        while maxPos != 0:
+          
 
-            if i == current_end:
-                cnt += 1
-                current_end = max_farthest
-        return cnt
+            i = 0
+
+            for i in range(maxPos):
+               
+                if i + nums[i] >= maxPos:
+                    maxPos = i
+                    count += 1
+                    break
+                
+                           
         
-            
+        return count
+
+
+
+        
