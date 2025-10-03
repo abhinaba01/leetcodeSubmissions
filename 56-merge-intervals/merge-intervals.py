@@ -8,12 +8,12 @@ class Solution:
 
         merged = []
 
-        for interval in intervals:
+        for start,end in intervals:
 
-            if merged == [] or interval[0] > merged[-1][-1]:
-                merged.append([interval[0],interval[1]])
-            if interval[0] <= merged[-1][-1]:
-                merged[-1][1] = max(interval[1],merged[-1][1])
+            if merged == [] or start> merged[-1][-1]:
+                merged.append([start,end])
+            if start<= merged[-1][-1]:
+                merged[-1][1] = max(end,merged[-1][1])
     
                 
         return merged
