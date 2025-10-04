@@ -5,7 +5,7 @@ class Solution:
         n = len(num)
 
         for i in range(n):
-            while k > 0 and stack and int(stack[-1]) > int(num[i]):
+            while k > 0 and stack and stack[-1] > num[i]:
                 stack.pop()
                 k -= 1
             
