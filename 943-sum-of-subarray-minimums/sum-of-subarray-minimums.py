@@ -32,7 +32,7 @@ class Solution:
             left = i - PGE[i]
             right = NGE[i] - i
 
-            sumArr += (left * right) * arr[i]
+            sumArr += (left * right* arr[i]) % MOD
         
         return sumArr % MOD
         
