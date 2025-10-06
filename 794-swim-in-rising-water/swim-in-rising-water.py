@@ -26,7 +26,7 @@ class Solution:
 
         
         
-        low,high = 0, (n * n)
+        low,high = 0, (n * n) - 1
         mid = 0
         ans = 0
 
