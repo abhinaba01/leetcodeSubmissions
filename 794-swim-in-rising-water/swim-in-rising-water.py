@@ -17,9 +17,10 @@ class Solution:
             nei = [(-1,0),(1,0),(0,-1),(0,1)]
 
             for dr,dc in nei:
-                if min(r+dr,c+dc) < 0 or r+dr == rows or c + dc == cols or  grid[r+dr][c+dc] > k or (r+dr,c+dc) in visited:
+                nr,nc = r+dr,c+dc
+                if not(0 <= nr < rows and 0 <= nc < cols) or  grid[nr][nc] > k or (nr,nc) in visited:
                     continue
-                if swim(r+dr,c+dc,k,visited):
+                if swim(nr,nc,k,visited):
                     return True
             
             return False
