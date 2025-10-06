@@ -1,14 +1,12 @@
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
 
-        rows = len(grid)
-        cols = len(grid[0])
-
+        n = len(grid)
 
 
         def swim(r,c,k,visited):
 
-            if r == rows - 1 and c == cols - 1:
+            if r == n - 1 and c == n - 1:
                 return True
             
             visited.add((r,c))
@@ -18,7 +16,7 @@ class Solution:
 
             for dr,dc in nei:
                 nr,nc = r+dr,c+dc
-                if not(0 <= nr < rows and 0 <= nc < cols) or  grid[nr][nc] > k or (nr,nc) in visited:
+                if not(0 <= nr < n and 0 <= nc < n) or  grid[nr][nc] > k or (nr,nc) in visited:
                     continue
                 if swim(nr,nc,k,visited):
                     return True
@@ -28,7 +26,7 @@ class Solution:
 
         
         
-        low,high = 0, (rows * rows)
+        low,high = 0, (n * n)
         mid = 0
         ans = 0
 
