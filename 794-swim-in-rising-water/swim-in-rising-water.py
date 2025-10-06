@@ -11,7 +11,7 @@ class Solution:
             if r == rows - 1 and c == cols - 1:
                 return True
             
-            visited.append((r,c))
+            visited.add((r,c))
            
 
             nei = [(-1,0),(1,0),(0,-1),(0,1)]
@@ -33,7 +33,7 @@ class Solution:
 
         while low <= high:
             mid = (low + high)// 2
-            if grid[0][0] <= mid and swim(0,0,mid,[]):
+            if grid[0][0] <= mid and swim(0,0,mid,set()):
                 high = mid - 1
                 ans = mid
             else:
