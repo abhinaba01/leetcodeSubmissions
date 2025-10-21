@@ -30,10 +30,10 @@ class Solution:
                     high = mid - 1
             return high
 
-        minNum = min(nums)
-        maxNum = max(nums)
-
+       
         nums.sort()
+        minNum = nums[0]
+        maxNum = nums[-1]
 
         
 
