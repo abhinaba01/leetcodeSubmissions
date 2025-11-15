@@ -3,13 +3,11 @@ class Solution:
 
         arr.sort()
         n = len(arr)
-
         ans = []
 
         i = 0
        
-
-        while i < n:
+        while i <= n - 3:
 
             j = i + 1
             k = n - 1
@@ -23,9 +21,6 @@ class Solution:
 
                     part1 = arr[j]
                     part2 = arr[k]
-
-                    
-
                     
                     while j < k and arr[j] == part1:
                             j += 1
