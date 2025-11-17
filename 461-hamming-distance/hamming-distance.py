@@ -1,8 +1,12 @@
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
 
-        ans = x ^ y
-        return ans.bit_count()
+        n = x ^ y
+        count = 0
+        while n:
+            n &= (n - 1)   
+            count += 1
+        return count
  
         
        
