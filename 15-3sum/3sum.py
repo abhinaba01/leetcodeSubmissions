@@ -1,65 +1,35 @@
 class Solution:
-    def threeSum(self, arr: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
 
-        arr.sort()
-        n = len(arr)
-        ans = []
+        nums.sort()
+        n = len(nums)
+        res = []
 
-        i = 0
-       
-        while i <= n - 3:
+        for i in range(n):
 
-            j = i + 1
-            k = n - 1
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
 
-            while j < k:
+            target = -nums[i]
 
-                s = arr[i] + arr[j] + arr[k]
+            L , R = i + 1 , n - 1
 
-                if s == 0:
-                    ans.append([arr[i],arr[j],arr[k]])
-
-                    part1 = arr[j]
-                    part2 = arr[k]
+            while L < R:
+                if nums[L] + nums[R] > target:
+                    R -= 1
                     
-                    while j < k and arr[j] == part1:
-                            j += 1
-                    while j < k and arr[k] == part2:
-                            k -= 1
-
-                elif s < 0:
-
-                    part1 = arr[j]
-
-                    while j < k and arr[j] == part1:
-                        j += 1
+                elif nums[L] + nums[R] < target:
+                    L += 1
                     
                 else:
+                    res.append([nums[i], nums[L], nums[R]])
+                    L += 1
+                    while nums[L] == nums[L - 1] and L < R:
+                        L += 1
 
-                    part2 = arr[k]
-
-                    while j < k and arr[k] == part2:
-                        k -= 1
-
-            curr = arr[i]
-
-            while i < n  and arr[i] == curr:
-                i += 1
-
-        return ans 
-
-
+            
+        return res
 
                 
 
-                
-
-
-
-        
-
-
-
-
-        
-        
+       
