@@ -1,22 +1,22 @@
 class Solution:
-
-    dp = [-1] * (100)
     def climbStairs(self, n: int) -> int:
-
-        if self.dp[n] != -1:
-            return self.dp[n]
-
-        
 
         if n == 1:
             return 1
-        if n == 0:
-            return 1
 
-        self.dp[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
-        return self.dp[n]
+        steps = [-1] * (n+1)
+        steps[1] = 1
+        steps[2] = 2
 
+        def dp(n):
 
+           
 
+            if steps[n] != -1:
+                return steps[n]
+            
+            else:
 
-        
+                steps[n] =  dp(n-1) + dp(n-2)
+                return steps[n]
+        return dp(n)    
