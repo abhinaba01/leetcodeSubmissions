@@ -16,8 +16,8 @@ class Solution:
                 return dp[i]
             
                 
-        costClimb(0)
-        return min(dp[0],dp[1])
+        return min(costClimb(0),costClimb(1))
+        
 
 
         
