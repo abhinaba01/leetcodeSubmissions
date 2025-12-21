@@ -1,34 +1,44 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
 
-        sumArr = sum(nums)
-        if sumArr & 1 != 0:
+        total_sum = sum(nums)
+
+        if total_sum % 2 != 0:
             return False
 
-        target = sumArr // 2
+        subsetSum = total_sum // 2
         n = len(nums)
 
-        dp = {}
+        dp = [[-1  for _ in range(total_sum + 1)] for _ in range(n+1)]
 
-        def dfs(i,currentSum):
-
-            if currentSum == 0:
-                
-                return True
-
-            if (i,currentSum) in dp:
-                return dp[(i,currentSum)]
-
-            if i == n or currentSum < 0:
-                return False
+        print(sum(nums),n+1)
+        
+        def dfs(i,total):
+           
+            if total == subsetSum:
+                return 1
             
-            dp[(i,currentSum)] = dfs(i+1,currentSum-nums[i]) or dfs(i+1,currentSum)
-            return dp[(i,currentSum)]
+            if total > subsetSum:
+                return 0
+            
+            if i >= n and total < subsetSum :
+                return 0
+            
 
-        return dfs(0,target)
+            if dp[i][total] != -1:
+                return dp[i][total] 
 
-                
+           
+          
+            if  dfs(i+1,total+nums[i])  == 1 or  dfs(i+1,total) == 1:
+                dp[i][total] = 1
+                return 1
 
-
+            dp[i][total] = 0   
+            return 0
+            
             
         
+        return True if dfs(0,0) == 1 else False
+              
+
