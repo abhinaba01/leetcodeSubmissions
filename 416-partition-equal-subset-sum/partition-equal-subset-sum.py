@@ -9,10 +9,9 @@ class Solution:
         subsetSum = total_sum // 2
         n = len(nums)
 
-        dp = [[-1  for _ in range(total_sum + 1)] for _ in range(n+1)]
+        dp = [[-1] * (subsetSum + 1)  for _ in range(n)]
 
-        print(sum(nums),n+1)
-        
+     
         def dfs(i,total):
            
             if total == subsetSum:
