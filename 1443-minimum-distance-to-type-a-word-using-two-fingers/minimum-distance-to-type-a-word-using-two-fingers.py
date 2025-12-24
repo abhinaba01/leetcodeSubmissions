@@ -14,14 +14,14 @@ class Solution:
             return abs(r1 - r2) + abs(c1 - c2) 
         
         @cache
-        def rec(i, pos1, pos2):
+        def rec(i,pos):
 
-            if i == n:
+            if i == n-1:
                 return 0
 
-            return min(rec(i+1,i,pos2) + dist(i,pos1) , rec(i+1,pos1,i) + dist(i,pos2))
+            return min(rec(i+1,pos) + dist(i+1,i) , rec(i+1,i) + dist(i+1,pos))
         
-        return rec(0,None,None)
+        return rec(0,None)
 
         
        
