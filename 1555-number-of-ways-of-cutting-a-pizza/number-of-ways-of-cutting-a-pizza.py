@@ -49,9 +49,6 @@ class Solution:
                 return 0
 
             
-            
-         
-          
             for j in range(sc,c):
                 if find(freq_col[j],sr) != -1:
                     start_c = j
