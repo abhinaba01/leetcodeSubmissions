@@ -24,26 +24,20 @@ class Solution:
         
         @cache
         def count(sr,sc,k):
+            
             start_r = -1
             start_c = -1
 
             ans = 0
-            a = 0
+            
 
             if k == 0:
                 for i in range(sr,r):
                     if find(freq_row[i],sc) != -1:
-                        a = 1
-                        break
+                        return 1
+                return 0
 
 
-                if a == 1:
-                    return 1
-                else:
-                    return 0              
-            
-       
-            
             if sr == r or sc == c:
                 return 0
 
