@@ -22,13 +22,13 @@ class Solution:
             if r == rows - 1:
                 return cherries
 
-            
+            best = -math.inf
+            for dc1 in (-1,0,1):
+                for dc2 in (-1,0,1):
+                    best =  max(best , solve(r+1,c1 + dc1,c2 + dc2))
 
-            ans =   cherries + max( solve(r+1,c1-1,c2-1),solve(r+1,c1-1,c2),solve(r+1,c1-1,c2+1),
-                        solve(r+1,c1,c2-1),solve(r+1,c1,c2),solve(r+1,c1,c2+1),
-                        solve(r+1,c1+1,c2-1),solve(r+1,c1+1,c2),solve(r+1,c1+1,c2+1)
-            )
-
+         
+            ans = cherries + best
             return ans
         
         return solve(0,0,cols - 1)
