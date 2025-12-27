@@ -4,14 +4,14 @@ class Solution:
         l = len(group)
         MOD = 10 ** 9 + 7
 
+        
+        
         @cache
         def solve(k,i,totalProfit):
 
             if i >= l:
-                if totalProfit >= minProfit:
-                    return 1
-                else:
-                    return 0
+                return totalProfit >= minProfit
+                
            
             cnt = 0
 
@@ -20,7 +20,7 @@ class Solution:
             if k - group[i] >= 0:
                 cnt = (cnt + solve(k-group[i],i+1,min(minProfit,totalProfit + profit[i]))) % MOD
                 
-            cnt = (cnt + solve(k,i+1,totalProfit)) % MOD
+            cnt = (cnt + solve(k,i+1,min(minProfit,totalProfit))) % MOD
 
             return cnt
 
