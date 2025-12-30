@@ -1,0 +1,1 @@
+<h2>number-of-beautiful-integers-in-the-range Notes</h2><hr>[ Time taken: 15 hrs 40 m 45 s ]
