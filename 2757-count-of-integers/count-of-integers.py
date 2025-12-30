@@ -11,7 +11,7 @@ class Solution:
             
             L = len(n)
             @cache
-            def solve(pos,tight,valid,sumd):
+            def solve(pos,tight,sumd):
                 
                 if pos == L:
                     if sumd <= max_sum and sumd >= min_sum:
@@ -24,15 +24,14 @@ class Solution:
                 limit = int(n[pos]) if tight else 9
                 for d in range(limit + 1):
                     ntight = tight and (d == limit)
-                    nvalid = valid or (d != 0)
-                    
-                    ans = (ans +  solve(pos+1,ntight,nvalid,sumd + d)) % MOD
+                   
+                    ans = (ans +  solve(pos+1,ntight,sumd + d)) % MOD
 
                 return ans
             
-            return solve(0,1,False,0)
+            return solve(0,1,0)
 
-        return abs((countInteger(num2) - countInteger(str(int(num1) - 1))) % MOD)
+        return abs((countInteger(num2) - countInteger(str(int(num1) - 1))) % MOD) 
 
             
             
