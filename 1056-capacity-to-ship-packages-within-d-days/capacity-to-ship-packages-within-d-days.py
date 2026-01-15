@@ -1,7 +1,7 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
 
-        low , high = 1 , sum(weights)
+        low , high = max(weights) , sum(weights)
 
         def canShip(cap):
 
@@ -9,8 +9,7 @@ class Solution:
             ans = 0
 
             for w in weights:
-                if w > cap:
-                    return math.inf
+                
                 if totw + w > cap:
                     ans += math.ceil(totw / cap)
                     totw = 0
