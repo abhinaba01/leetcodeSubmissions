@@ -11,7 +11,7 @@ class Solution:
             for w in weights:
                 
                 if totw + w > cap:
-                    ans += math.ceil(totw / cap)
+                    ans += 1
                     totw = 0
                 totw += w
 
