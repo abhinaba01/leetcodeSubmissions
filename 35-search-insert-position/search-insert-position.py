@@ -8,7 +8,7 @@ class Solution:
 
             mid = low + (high - low ) // 2
             print(mid)
-            if nums[mid] == target or (nums[mid] > target and nums[mid - 1] < target):
+            if nums[mid] == target:
                 return mid
             else:
                 if nums[mid] > target:
