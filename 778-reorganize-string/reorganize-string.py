@@ -2,12 +2,16 @@ class Solution:
     def reorganizeString(self, s: str) -> str:
 
         freq = Counter(s)
+
         s1 = ""
 
         maxHeap = []
 
         for ch, f in freq.items():
             heapq.heappush(maxHeap, (-f, ch))
+
+        if -maxHeap[0][0] > (len(s) + 1) // 2:
+            return ""
 
         l = len(maxHeap)
 
@@ -30,14 +34,7 @@ class Solution:
                 heapq.heappush(maxHeap,(f,item))
 
             
-            if len(maxHeap) == 1:
-              
-                f ,item = heapq.heappop(maxHeap)
-                if f < -1:
-                    return ""
-
-                else:
-                    heapq.heappush(maxHeap,(f,item))
+           
 
         
         return s1
