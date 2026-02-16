@@ -1,24 +1,21 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
 
-        ans = []
-      
-
         n = len(nums)
+        result = []
 
-        def dfs(j,path):
-
-            if j == n:
-                ans.append(path)
+        def solve(i,arr):
+            if i == n:
+                result.append(arr)
                 return
-            
+                
 
+         
+            arr.append(nums[i])
+            solve(i+1,arr[:])
+            arr.pop()
+            solve(i+1,arr[:])
+
+        solve(0,[])
+        return result
         
-            path.append(nums[j])
-            dfs(j+1,path[:])
-            path.pop()
-            dfs(j+1,path[:])
-
-        dfs(0,[])
-
-        return ans
