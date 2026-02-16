@@ -1,27 +1,34 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
 
-        ans = []
+        res = []
         path = []
-
-        sorted_candidates = sorted(candidates)
-
-        def dfs(start,n):
-            if n < 0:
-                return
-            elif n == 0:
-                ans.append(path[:])
-                return ans
-            
-            for i in range(start,len(sorted_candidates)):
-                if i > start and sorted_candidates[i] == sorted_candidates[i - 1]:
-                    continue
-                path.append(sorted_candidates[i])
-                dfs(i+1,n - sorted_candidates[i])
-                path.pop()
         
-        dfs(0,target)
-        return ans
 
-    
+        n = len(candidates)
+        candidates.sort()
+
+        def solve(i,rem):
+
+            if rem < 0:
+                return
+            
+            if rem == 0:
+                res.append(path[:])
+                
+
+            for j in range(i,n):
+
+                if j > i and candidates[j] == candidates[j-1]:
+                    continue
+
+                
+                
+                path.append(candidates[j])
+                solve(j+1,rem - candidates[j])
+                path.pop()
+
+        solve(0,target)
+        return res
+
         
