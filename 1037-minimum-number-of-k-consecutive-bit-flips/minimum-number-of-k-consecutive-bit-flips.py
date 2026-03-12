@@ -16,7 +16,7 @@ class Solution:
                 if i + k > n:
                     return -1
 
-                diff[i] += 1
+                # diff[i] += 1
                 diff[i + k] -= 1
 
                 flip += 1
