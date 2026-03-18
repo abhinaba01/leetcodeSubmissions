@@ -3,19 +3,21 @@ class Solution:
 
         n = len(nums)
         result = []
+        
 
-        def solve(i,arr):
-            if i == n:
-                result.append(arr)
-                return
+        for i in range(1 << n):
+
+            ans = []
+
+            for k in range(n):
+
+                if i & (1 << k):
+                    ans.append(nums[k])
+                
+            result.append(ans)
+        
+        return result
                 
 
-         
-            arr.append(nums[i])
-            solve(i+1,arr[:])
-            arr.pop()
-            solve(i+1,arr[:])
 
-        solve(0,[])
-        return result
-        
+            
