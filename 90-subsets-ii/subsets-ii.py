@@ -8,7 +8,7 @@ class Solution:
         for i in range(1 << n):
 
             ans = []
-            valid = True   # 🔥 track if subset is valid
+            valid = True  
 
             for k in range(n):
 
@@ -16,7 +16,7 @@ class Solution:
 
                     if k > 0 and nums[k] == nums[k - 1] and not (i & (1 << (k - 1))):
                         valid = False
-                        break   # ❌ reject this mask completely
+                        break  
 
                     ans.append(nums[k])
 
