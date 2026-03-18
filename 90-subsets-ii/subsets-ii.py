@@ -1,26 +1,26 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        path = []
+
         n = len(nums)
+        result = []
         nums.sort()
 
-        def subsetHelper(i):
+        for i in range(1 << n):
 
-            if i >= n:
-    
-                ans.append(path[:])
-                return
+            ans = []
+            valid = True   # 🔥 track if subset is valid
 
-            path.append(nums[i])
-            subsetHelper(i+1)
-            path.pop()
+            for k in range(n):
 
-            while i + 1 < n and nums[i] == nums[i+1]:
-                i += 1
-            subsetHelper(i+1)
-        
-        subsetHelper(0)
-        return ans
+                if i & (1 << k):
 
-        
+                    if k > 0 and nums[k] == nums[k - 1] and not (i & (1 << (k - 1))):
+                        valid = False
+                        break   # ❌ reject this mask completely
+
+                    ans.append(nums[k])
+
+            if valid:
+                result.append(ans)
+
+        return result
