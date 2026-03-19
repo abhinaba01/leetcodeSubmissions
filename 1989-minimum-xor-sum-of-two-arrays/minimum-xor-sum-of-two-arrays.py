@@ -3,29 +3,30 @@ class Solution:
 
         n = len(nums1)
 
-        INF = 10**18
-        dp = [INF] * (1 << n)
-        dp[0] = 0 
+        dp = [[-1] * n for _ in range(1 << n)]
 
-        for mask in range(1 << n):
-            k = bin(mask).count("1") 
-            if k >= n:
-                continue
+        def solve(i,mask):
 
-            for i in range(n):
-                if not (mask & (1 << i)):
-                    new_mask = mask | ( 1<< i)
-                    dp[new_mask] = min(dp[new_mask],dp[mask] + (nums1[k] ^ nums2[i]))
+            if i == n:
+                return 0
 
-        
-        answer = dp[(1 << n) - 1]
-        return answer
+            ans = float("inf")
+            
+            if dp[mask][i] != -1:
+                return dp[mask][i]
 
 
 
+            
+            for j in range(n):
+
+                if not mask & (1 << j):
+                    
+                    ans = min(ans,solve(i+1,mask | (1 << j)) + (nums1[i] ^ nums2[j]))
+
+            dp[mask][i] = ans  
+            return ans
+
+        return solve(0,0)
 
 
-
-        
-
-      
