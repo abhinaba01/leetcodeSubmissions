@@ -11,7 +11,7 @@ class Solution:
             freq[nums[i]] += 1
 
         
-        print(freq)
+        
 
 
         counts = list(freq.values())
