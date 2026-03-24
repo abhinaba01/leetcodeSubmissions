@@ -8,7 +8,7 @@ class Solution:
         def dfs(arr):
 
       
-            if len(arr) == 0:
+            if not  arr:
                 ans.append(res[:])
                 return
 
