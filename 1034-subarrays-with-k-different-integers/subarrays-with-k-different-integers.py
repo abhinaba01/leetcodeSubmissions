@@ -1,30 +1,39 @@
 class Solution:
     def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
 
-        def atMost(m):
+        n = len(nums)
+      
+     
 
-            l , r = 0 , 0
-            n = len(nums)
-            unique, count = 0 , 0
-            freq = {}
+        def atMost(k):
 
-            while r < n:
+            l = 0
 
-                if freq.get(nums[r],0) == 0:
-                    unique += 1
-                freq[nums[r]] = freq.get(nums[r],0) + 1
-                
+            freq = defaultdict(int)
 
-                while unique > m:
+            distinct , cnt = 0 , 0
+
+            for r in range(n):
+
+                if freq[nums[r]] == 0:
+                    distinct += 1
+                freq[nums[r]] += 1
+
+                while distinct > k:
                     freq[nums[l]] -= 1
                     if freq[nums[l]] == 0:
-                        unique -= 1
+                        distinct -= 1
+                    
                     l += 1
+
                 
-                count += (r - l + 1)
-                r += 1
-            
-            
-            return count
+                cnt += (r - l + 1)
+
+            return cnt
+
         
+
         return atMost(k) - atMost(k - 1)
+           
+            
+        
