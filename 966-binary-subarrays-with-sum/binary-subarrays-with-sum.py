@@ -1,29 +1,37 @@
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
 
+        n = len(nums)
+
+
+
         def atMost(k):
 
-            if k < 0:
-                return 0   # no subarrays can have sum <= -1
-
-            l,r = 0,0
-            n = len(nums)
+            l = 0
+            total = 0
             count = 0
 
-            target = 0
+            for r in range(n):
 
-            while r < n:
-
-                target += nums[r]
-                while target > k:
-                    target -= nums[l]
+                total += nums[r]
+                while total > k and l <= r:
+                    total -= nums[l]
                     l += 1
                 
-                count  += (r-l+1)
-                
-                r += 1
+                count += (r - l + 1)
+
             return count
+
             
+     
         return atMost(goal) - atMost(goal - 1)
 
-       
+
+
+            
+
+
+
+            
+
+        
