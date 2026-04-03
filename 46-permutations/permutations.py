@@ -1,31 +1,35 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
 
+        n = len(nums)
         ans = []
-        res = []
+        path = []
 
+        def dfs(new_nums):
 
-        def dfs(arr):
-
-      
-            if not  arr:
-                ans.append(res[:])
+            if len(path) == n:
+                ans.append(path[:])
                 return
 
-            
-           
-            for j in range(len(arr)):
-                res.append(arr[j])
-                dfs(arr[:j] + arr[j+1:])
-                res.pop()
+            N = len(new_nums)
+            for j in range(N):
+                path.append(new_nums[j])
+                dfs(new_nums[:j]+new_nums[j+1:])
+                path.pop()
 
-            
-        
-        dfs(nums)
+        dfs(nums[:])
         return ans
 
+            
 
+
+           
             
 
 
 
+
+
+
+
+    
