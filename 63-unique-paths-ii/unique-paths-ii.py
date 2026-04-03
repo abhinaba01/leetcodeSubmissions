@@ -1,28 +1,31 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
 
+
         m = len(obstacleGrid)
         n = len(obstacleGrid[0])
-        
-        @cache
-        def count(i,j):
 
-            if i >= m:
+
+        dp = [[-1] * n for _ in range(m)]
+
+        def count(r,c):
+
+            if r == m or c == n:
                 return 0
-            if j >= n:
+
+            if obstacleGrid[r][c] == 1:
                 return 0
             
-            if obstacleGrid[i][j] == 1:
-                return 0
+            if r == m - 1 and c == n - 1:
+                return  1
 
-            if i == m -1 and j == n -1:
-                return 1
+            if dp[r][c] != -1:
+                return dp[r][c]
 
-           
-            
-            else:
-
-                return count(i+1,j) + count(i,j+1)
+            dp[r][c] =  count(r+1,c) + count(r,c+1)
+            return dp[r][c]
         
         return count(0,0)
-        
+
+
+       
