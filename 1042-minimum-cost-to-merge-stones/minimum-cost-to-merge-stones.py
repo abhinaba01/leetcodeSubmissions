@@ -7,13 +7,15 @@ class Solution:
             return -1
 
         
-        cost = defaultdict(int)
-        cost[-1] = 0
-        total = 0
+        prefix = [0] * (n+1)
 
         for i in range(n):
-            total += stones[i]
-            cost[i] = total
+            prefix[i+1] = prefix[i] + stones[i]
+
+        
+        def cost(i,j):
+            return prefix[j+1] - prefix[i]
+        
 
 
         dp = [[-1] * n for _ in range(n)]
@@ -35,7 +37,7 @@ class Solution:
                 ans = min(ans , merge(i,x) + merge(x+1,j))
 
             if (j -i ) % (k - 1) == 0:
-                    ans += (cost[j] - cost[i - 1])
+                    ans += cost(i,j)
 
               
 
