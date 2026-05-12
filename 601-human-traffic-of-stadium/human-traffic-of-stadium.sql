@@ -1,25 +1,25 @@
-# Write your MySQL query statement below
-
-WITH temp AS (
-    SELECT * , ROW_NUMBER() OVER( ORDER BY visit_date) as rn 
-    FROM Stadium 
+WITH TEMP AS (
+    SELECT * , ROW_NUMBER() OVER(ORDER BY visit_date) as rn 
+    FROM Stadium
     WHERE people >= 100
-    
-    ),
 
-    grp as (
-    SELECT * , id - rn AS diff
-    FROM temp
-    )
+)
+,
+
+grp AS (
+SELECT * ,t.id - t.rn as diff
+FROM TEMP t
     
+)
 
 SELECT  id , visit_date , people
-FROM grp
-WHERE diff in (SELECT diff
-                FROM  grp 
-                GROUP BY diff
-                HAVING COUNT(*) >= 3)
-
+FROM grp 
+WHERE diff IN (
+    SELECT diff
+    FROM grp
+    GROUP BY diff
+    HAVING COUNT(*) >= 3
+)
 
 
 
