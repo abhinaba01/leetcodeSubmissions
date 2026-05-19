@@ -12,11 +12,18 @@ class Solution:
 
             cnt = 0
 
-            for i in range(n):
+            l = 0
 
-                j = bisect_left(nums, nums[i] - val, 0, i)
-                cnt += (i - j)
+            for r in range(n):
 
+                while nums[r] - nums[l] > val:
+                    l += 1
+
+                
+                cnt += (r - l)
+
+
+               
 
             
             return cnt >= k
