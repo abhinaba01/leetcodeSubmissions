@@ -1,85 +1,135 @@
 class Solution:
     def minOperationsQueries(self, n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:
 
-        LOG = math.ceil(math.log2(n)) + 1
         
-        adj = [[] for _ in range(n+2)]
+        graph = [[]  for _ in range(n)]
 
-        depth = [0] * (n+2)
-        freq = defaultdict(lambda: [0] * 27)
+        depth = [-1] * n
 
-        dp = [[-1] * LOG for _ in range(n+1)]
-      
-        
-        
-        for u,v,w in edges:
-            adj[u].append([v,w])
-            adj[v].append([u,w])
+        dp = [[-1] * 20 for _ in range(n)]
 
+        freq = [[0] * 27 for _ in range(n)]
+
+        for u , v , w in edges:
+
+            graph[u].append((v,w))
+            graph[v].append((u,w))
 
     
 
         def dfs(node,parent):
-           
-            
-               
-            dp[node][0] = parent
-            
-            for j in range(1,LOG):
-                if dp[node][j-1] != -1:
-                    dp[node][j] = dp[dp[node][j-1]][j-1]
 
-            
+            dp[node][0] =  parent
 
-            for child,weight in adj[node]:
-                if child == parent:
+            for nei,weight in graph[node]:
+                if nei == parent:
                     continue
-                freq[child] = freq[node][:]
-                freq[child][weight] += 1
-                depth[child] = depth[node] + 1
-                dfs(child,node)
+                depth[nei] = depth[node] + 1
+                freq[nei] = freq[node][:]
+                freq[nei][weight]  +=  1
+                dfs(nei,node)
 
-        dfs(0,-1)
+                
 
-        def lca(p,q):
+    
+        def build():
 
-            if depth[p] < depth[q]:
-                p,q = q,p
+            depth[0] = 0
 
-            diff = depth[p] - depth[q]
+            dfs(0,-1)
 
-            for i in range(LOG):
-                if diff & ( 1<< i):
-                    p = dp[p][i]
+            for j in range(1,20):
+                for i in range(n):
 
-                if p == q:
-                    return p
+                    if dp[i][j-1] != -1:
+                        dp[i][j] = dp[dp[i][j-1]][j-1]
 
-            for i in range(LOG - 1 ,-1 , -1):
-                if dp[p][i] != -1 and dp[p][i] != dp[q][i]:
-                    p = dp[p][i]
-                    q = dp[q][i]
+           
+        build()
 
-            return dp[p][0]
+        def lift(node,k):
 
-        def solve(u,v):
+            j = 0
+          
+            while k != 0 and node != -1:
+                if k & 1:
+                    node = dp[node][j]
+                    
+                
+                j += 1
+                k = k >> 1
+                
+            return node
 
-            k = lca(u,v)
-            ne = depth[u] + depth[v] - 2 * depth[k]
-            res = [0] * 27
+    
+        def lca(a,b):
 
+            total_depth = depth[a] + depth[b]
 
-            for i in range(1,27):
-                res[i] = freq[u][i] + freq[v][i] - 2 * freq[k][i]
+            if depth[a] < depth[b]:
+                a,b = b,a
 
-            return ne - max(res[1:])
+            diff = depth[a] - depth[b]
+
+            a = lift(a,diff)
+
+            if a == b:
+                return a
+            
+            for j in range(19,-1,-1):
+                if dp[a][j] != dp[b][j]:
+                    a = dp[a][j]
+                    b = dp[b][j]
+                   
 
             
-        ans = []
-        for a,b in queries:
-            ans.append(solve(a,b))
+          
+            lca = dp[a][0]
 
-        return ans
+            return lca
+
+        def ans(u,v):
+
+            anc = lca(u,v)
+
+            ans = 0
+
+            for i in range(27):
+                ans = max(ans,freq[u][i] + freq[v][i] - 2 * freq[anc][i])
+
+            dist = depth[u] + depth[v] - 2 * depth[anc]
+
+            return dist - ans
+
+            
+
+        res = []
+        for a , b in queries:
+            res.append(ans(a,b))
+
+        
+        return res
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+            
+
+        
+
+
 
 
         
