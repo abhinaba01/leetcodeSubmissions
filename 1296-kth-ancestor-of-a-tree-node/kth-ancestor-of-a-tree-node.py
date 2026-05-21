@@ -4,36 +4,38 @@ class TreeAncestor:
 
         self.dp = [[-1] * 20 for _ in range(n)]
 
-      
-
-        for i in range(len(parent)):
-            self.dp[i][0] = parent[i]
         
-       
+        for i in range(len(parent)):
+
+            self.dp[i][0] = parent[i]
+
+        
         for j in range(1,20):
+            
             for i in range(n):
                 if self.dp[i][j-1] != -1:
                     self.dp[i][j] = self.dp[self.dp[i][j-1]][j-1]
-                else:
-                    self.dp[i][j] = -1
+                
 
+        
+        
 
-            
     def getKthAncestor(self, node: int, k: int) -> int:
 
-        j = 0
+        i = 0
+        
+
         while k != 0 and node != -1:
-            if k & 1:
-                node = self.dp[node][j]
+            if(k & 1):
+                node = self.dp[node][i]
             k = k >> 1
-            j += 1
+            i += 1
+                
+
         
         return node
 
-            
         
-       
-
         
 
 
