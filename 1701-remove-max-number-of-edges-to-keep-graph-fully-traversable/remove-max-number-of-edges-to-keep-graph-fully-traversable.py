@@ -5,8 +5,8 @@ class Solution:
         class DSU:
 
             def __init__(self,n):
-                self.parent = list(range(n))
-                self.size = [1] * n
+                self.parent = list(range(n+1))
+                self.size = [1] * (n + 1)
                 self.components = n
 
 
@@ -35,23 +35,14 @@ class Solution:
                 self.parent[py] = px
                 self.size[px] += self.size[py]
 
+                self.components -= 1
+
                 return True
-
-
-        def isConnected(dsu:DSU):
-
-            root = set()
-
-            for i in range(1,n + 1):
-                root.add(dsu.find(i))
-            
-            return len(root) == 1
-
             
 
 
-        alice = DSU(n + 1)
-        bob = DSU(n + 1)
+        alice = DSU(n)
+        bob = DSU(n)
 
 
         cnt = 0
@@ -75,17 +66,13 @@ class Solution:
                         b += 1
 
         
-        if not(isConnected(alice) and  isConnected(bob)):
+        if alice.components != 1 or  bob.components != 1:
             return -1
 
 
         return len(edges) - ( a + b + cnt)
 
-        
-                
-        
 
-            
 
 
 
