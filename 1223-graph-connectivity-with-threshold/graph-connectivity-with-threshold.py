@@ -37,17 +37,11 @@ class Solution:
 
         dsu = DSU(n)
 
-        for i in range(max(threshold,1),n + 1):
+        for i in range(threshold + 1,n + 1):
 
-            for j in range(i,n + 1,i):
-
-               
-
-                if i == j:
-                    continue
-
-                if gcd(i,j) > threshold:
-                    dsu.union(i,j)
+            for j in range(2 * i,n + 1,i):
+                
+                dsu.union(i,j)
 
 
         res = []
