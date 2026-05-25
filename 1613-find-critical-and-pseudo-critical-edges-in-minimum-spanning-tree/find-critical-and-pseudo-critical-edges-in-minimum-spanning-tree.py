@@ -46,7 +46,8 @@ class Solution:
 
         dsu = DSU(n)
 
-        res = [[] for _ in range(2)]
+        critical = []
+        pseudo_critical = []
 
         mst_weight = 0
 
@@ -80,12 +81,12 @@ class Solution:
 
 
             if total > mst_weight or dsu1.components > 1:
-                res[0].append(j)
+                critical.append(j)
 
 
         for j in range(len(edges)):
 
-            if j in res[0]:
+            if j in critical:
                 continue
 
 
@@ -109,10 +110,10 @@ class Solution:
 
             
             if total == mst_weight and dsu2.components == 1:
-                res[1].append(j)
+                pseudo_critical.append(j)
 
 
-        return res
+        return [critical,pseudo_critical]
 
 
 
