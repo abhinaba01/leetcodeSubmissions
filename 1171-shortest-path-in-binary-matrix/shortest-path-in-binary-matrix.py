@@ -1,44 +1,57 @@
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
 
-        n = len(grid)
-        queue = [(0,0)]
+        rows , cols = len(grid) , len(grid[0])
+
+        pq = deque([(0,0,1)])
+
+        INF = float("inf")
+        ans = INF
         visited = set()
-        visited.add((0,0))
 
-        length = 1
-
-        if grid[0][0] == 1 or grid[n-1][n-1] == 1:
+        if grid[0][0] == 1 or grid[rows - 1][cols - 1] == 1:
             return -1
+        
 
-        neighbors = [(-1,0),(1,0),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1),(1,1)]
+        while pq:
 
-        while queue:
-            for i in range(len(queue)):
-                r,c = queue.pop(0)
+            r , c , steps = pq.popleft()
 
-                if r == n - 1 and c == n - 1:
-                    return length
+            if (r == rows - 1 and c == cols - 1):
+                return steps
+               
                 
 
-                for dr,dc in neighbors:
-                    if min(r+dr,c+dc) < 0 or (r+dr) == n or (c + dc) == n or (r+dr,c+dc) in visited or grid[r+dr][c+dc] == 1:
-                        continue
-                    
-                    queue.append((r+dr,c+dc))
-                    visited.add((r+dr,c+dc))
+            dir = [(-1,0),(1,0),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1),(1,1)]
 
-            length += 1
-        
+            for dr,dc in dir:
+
+                nr = r + dr
+                nc = c + dc
+
+
+                if not ((0<= nr < rows) and (0<=nc <cols)):
+                    continue
+                
+                if grid[nr][nc] == 1:
+                    continue
+
+                if (nr,nc) in visited:
+                    continue
+
+                visited.add((nr,nc))
+                pq.append((nr,nc,steps + 1))
+
+      
+      
+
         return -1
+
         
-            
+
+                
 
 
 
 
-
-
-
-    
         
