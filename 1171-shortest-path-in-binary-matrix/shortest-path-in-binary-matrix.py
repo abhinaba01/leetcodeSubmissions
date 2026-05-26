@@ -20,8 +20,6 @@ class Solution:
             if (r == rows - 1 and c == cols - 1):
                 return steps
                
-                
-
             dir = [(-1,0),(1,0),(0,1),(0,-1),(-1,-1),(-1,1),(1,-1),(1,1)]
 
             for dr,dc in dir:
@@ -41,9 +39,6 @@ class Solution:
 
                 visited.add((nr,nc))
                 pq.append((nr,nc,steps + 1))
-
-      
-      
 
         return -1
 
