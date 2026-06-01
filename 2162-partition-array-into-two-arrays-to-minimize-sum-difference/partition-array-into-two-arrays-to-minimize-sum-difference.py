@@ -68,38 +68,15 @@ class Solution:
 
                 prev , nxt = None , None
                 
-
-                # while low <= high:
-                #     m = low + (high - low) // 2
-                  
-                #     if arr2[m] <= x :
-                #         ans = m
-                #         low = m + 1
-                #     elif arr2[m] > x :
-                #         high = m - 1
-
-                pos = bisect_right(arr2,x) - 1
+                pos = bisect_right(arr2,x)-1 # bisect_right checks for first pos with value > x
 
                 if pos != 0:
                     prev = arr2[pos]
 
-                pos = bisect_left(arr2,x)
+                pos = bisect_left(arr2,x) # bisect_left checks  for first pos with value >= x
 
                 if pos != len(arr2):
                     nxt = arr2[pos]
-
-                # low , high = 0 , len(arr2) - 1 
-                # ans = -1
-                # while low <= high:
-                #     m = low + (high - low) // 2
-                 
-                #     if arr2[m] < x :
-                #         low = m + 1
-                #     elif arr2[m] >= x :
-                #         ans = m
-                #         high = m - 1
-                        
-              
 
                 best = INF
 
