@@ -1,43 +1,45 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
 
-        total_sum = sum(nums)
-
-        if total_sum % 2 != 0:
-            return False
-
-        subsetSum = total_sum // 2
+        total = sum(nums)
         n = len(nums)
 
-        dp = [[-1] * (subsetSum + 1)  for _ in range(n)]
-
-     
-        def dfs(i,total):
-           
-            if total == subsetSum:
-                return 1
-            
-            if total > subsetSum:
-                return 0
-            
-            if i >= n and total < subsetSum :
-                return 0
-            
-
-            if dp[i][total] != -1:
-                return dp[i][total] 
-
-           
-          
-            if  dfs(i+1,total+nums[i])  == 1 or  dfs(i+1,total) == 1:
-                dp[i][total] = 1
-                return 1
-
-            dp[i][total] = 0   
-            return 0
-            
-            
+        if total % 2 != 0:
+            return False
         
-        return True if dfs(0,0) == 1 else False
-              
+        halfSum = total // 2
 
+        dp = {}
+
+        def dfs(i,s):  # is it possible to get subSetSum if we have sum s upto index i ?
+
+            if i == n and s < halfSum:
+                return 0
+            
+            if s == halfSum:
+                return 1
+            
+            if s > halfSum:
+                return 0
+
+            if (i,s) in dp:
+                return dp[(i,s)]
+
+            if dfs(i+1,s+nums[i]) or dfs(i+1,s):
+                dp[(i,s)] = 1
+                return 1
+            
+            else:
+                dp[(i,s)] = 0
+                return 0
+
+        return True if dfs(0,0) else False
+
+
+
+            
+                
+            
+
+
+            
