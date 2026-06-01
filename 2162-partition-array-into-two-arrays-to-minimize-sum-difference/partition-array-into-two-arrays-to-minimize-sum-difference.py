@@ -4,6 +4,8 @@ class Solution:
         n = len(nums)
         total = sum(nums)
 
+        INF = float("inf")
+
         target = total / 2
         mid = n // 2
 
@@ -55,7 +57,7 @@ class Solution:
             arr2.sort()
 
           
-            res = float("inf")
+            res = INF
 
             ansi = [0] * len(arr1)
             for i in range(len(arr1)):
@@ -65,35 +67,41 @@ class Solution:
                 low , high = 0 , len(arr2) - 1
 
                 prev , nxt = None , None
-                ans= -1
+                
 
-                while low <= high:
-                    m = low + (high - low) // 2
+                # while low <= high:
+                #     m = low + (high - low) // 2
                   
-                    if arr2[m] <= x :
-                        ans = m
-                        low = m + 1
-                    elif arr2[m] > x :
-                        high = m - 1
+                #     if arr2[m] <= x :
+                #         ans = m
+                #         low = m + 1
+                #     elif arr2[m] > x :
+                #         high = m - 1
 
-                if ans != -1:
-                    prev = arr2[ans]
+                pos = bisect_right(arr2,x) - 1
 
-                low , high = 0 , len(arr2) - 1 
-                ans = -1
-                while low <= high:
-                    m = low + (high - low) // 2
+                if pos != 0:
+                    prev = arr2[pos]
+
+                pos = bisect_left(arr2,x)
+
+                if pos != len(arr2):
+                    nxt = arr2[pos]
+
+                # low , high = 0 , len(arr2) - 1 
+                # ans = -1
+                # while low <= high:
+                #     m = low + (high - low) // 2
                  
-                    if arr2[m] < x :
-                        low = m + 1
-                    elif arr2[m] >= x :
-                        ans = m
-                        high = m - 1
+                #     if arr2[m] < x :
+                #         low = m + 1
+                #     elif arr2[m] >= x :
+                #         ans = m
+                #         high = m - 1
                         
-                if ans != -1:
-                    nxt = arr2[ans]
+              
 
-                best = float("inf")
+                best = INF
 
                 if prev is not None :
                     best = min(
