@@ -12,12 +12,16 @@ class Solution:
         for i in range(1,len(s)):
             res += (L ** i)
 
-
-        @cache
+        
+        memo = {}
         def dp(pos,tight):
 
             if pos == len(s):
                 return 1
+
+            if (pos,tight) in memo:
+                return memo[(pos,tight)]
+
             
             limit = s[pos] if tight else MAX
 
@@ -30,6 +34,8 @@ class Solution:
 
                 ans += dp(pos + 1,ntight)
 
-            return ans
+            memo[(pos,tight)] = ans
+            return memo[(pos,tight)]
+
         
         return res + dp(0,1)
