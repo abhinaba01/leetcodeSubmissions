@@ -9,7 +9,7 @@ class Solution:
 
         res = 0
 
-        for i in range(len(s)):
+        for i in range(1,len(s)):
             res += (L ** i)
 
 
@@ -32,4 +32,4 @@ class Solution:
 
             return ans
         
-        return res + dp(0,1) - 1
+        return res + dp(0,1)
