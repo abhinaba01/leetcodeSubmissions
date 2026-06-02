@@ -4,13 +4,16 @@ class Solution:
         bin_n = (bin(n)[2:])
         L = len(bin_n)
 
-        @cache
+        dp = {}
         def solve(index,tight,valid,prev):
 
             if index == L:
                 return 1
 
-       
+            if (index,tight,valid,prev + 1)  in dp:
+                return dp[(index,tight,valid,prev + 1)]
+                
+
             limit = int(bin_n[index]) if tight else 1
 
             ans = 0
@@ -23,7 +26,8 @@ class Solution:
                     continue
 
                 ans += solve(index+ 1,ntight,nvalid,nprev)
-        
+
+            dp[(index,tight,valid,prev + 1)] = ans
             return ans
 
         return solve(0,1,False,-1)
