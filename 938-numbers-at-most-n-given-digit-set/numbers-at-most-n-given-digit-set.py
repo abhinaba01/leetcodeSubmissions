@@ -1,40 +1,35 @@
 class Solution:
     def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:
 
+        L = len(digits)
+
         s = str(n)
-        L = len(s)
-        length = len(digits)
+        
+        MAX = digits[-1]
 
         res = 0
-        
-    
-        for i in range(1,L):
-            res += (length ** i)
+
+        for i in range(len(s)):
+            res += (L ** i)
+
 
         @cache
-        def solve(index,tight):
-            if index == L:
+        def dp(pos,tight):
+
+            if pos == len(s):
                 return 1
+            
+            limit = s[pos] if tight else MAX
 
             ans = 0
-            
-            limit = int(s[index]) if tight else int(digits[-1])
-          
-            for i in digits:
-                d = int(i)
-               
+
+            for d in digits:
                 if d > limit:
                     continue
                 ntight = tight and (d == limit)
-             
-                ans += solve(index + 1 ,ntight)
+
+                ans += dp(pos + 1,ntight)
 
             return ans
-
-        return res + solve(0,1)
-
-
-
-
-
         
+        return res + dp(0,1) - 1
