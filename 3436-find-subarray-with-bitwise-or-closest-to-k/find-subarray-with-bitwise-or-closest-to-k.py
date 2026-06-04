@@ -1,28 +1,27 @@
 class Solution:
     def minimumDifference(self, nums: List[int], k: int) -> int:
 
-    
-        def distinct_or_values(arr):
-            ans = set()
-            prev = set()
 
-            for x in arr:
-                curr = {x}
+        ans = set()
+        prev = set()
 
-                for y in prev:
-                    curr.add(y | x)
+        for x in nums:
+            curr = {x}
 
-                ans |= curr
-                prev = curr
+            for y in prev:
+                curr.add(y|x)
 
-            return ans
+            
+            ans |= curr
+            prev = curr
 
-        or_list = distinct_or_values(nums)
-
+        
         diff = float("inf")
-        for el in or_list:
-            print(el)
-            diff  = min(diff,abs(k - el))
+        for el in ans:
+            diff = min(diff,abs(k - el))
 
         
         return diff
+            
+    
+      
