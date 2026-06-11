@@ -1,24 +1,20 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
 
-        n = len(nums)
+        prefix = defaultdict(int)
+        ans = float("-inf")
+        total =  0
 
-        prefixSum = 0
-        maxSum = float("-inf")
-
-        for i in range(n):
-            prefixSum += nums[i]
-            maxSum = max(maxSum,prefixSum)
-            if prefixSum < 0:
-                prefixSum = 0
-           
-        
-        return maxSum
+        for num in nums:
             
+            total += num
+            ans = max(ans,total)
+
+            if total < 0:
+                total = 0
 
         
+        return ans
 
-
-        
-
+            
         
