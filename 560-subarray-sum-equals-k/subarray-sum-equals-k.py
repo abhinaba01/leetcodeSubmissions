@@ -1,20 +1,26 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
 
-        prefixSum = 0
-        freq = defaultdict(int)
-        freq[0] = 1
-        c = 0
+        prefixSum = defaultdict(int)
+        prefixSum[0] = 1
 
-        for i in range(len(nums)):
-            prefixSum += nums[i]
-            if prefixSum - k in freq:
-                c += freq[prefixSum - k]
-            
-            freq[prefixSum] += 1
-            
-            
-        return c
+        N = len(nums)
+        
+        total = 0
+        cnt = 0
 
-
+        for  i in range(N):
+            total += nums[i]
        
+            cnt += prefixSum[total - k]
+            
+            prefixSum[total] += 1
+
+        
+      
+        return cnt
+        
+
+        
+
+        
