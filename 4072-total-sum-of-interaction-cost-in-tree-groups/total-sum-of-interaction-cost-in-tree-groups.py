@@ -1,69 +1,57 @@
 class Solution:
     def interactionCosts(self, n: int, edges: List[List[int]], group: List[int]) -> int:
 
-       
-        total_sum = 0
-        ans = 0
-
-        total_grp = [0] * 21
-
-       
-
         adj = defaultdict(list)
 
-        for start , end in edges:
-            adj[start].append(end)
-            adj[end].append(start)
+        total_grp = defaultdict(int)
 
+        for u , v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        
         for g in group:
             total_grp[g] += 1
 
+        res = 0
+
         def dfs(node,parent):
 
-            nonlocal ans
+            nonlocal res 
 
-            res = [0] * 21
+            curr_count = [0] * 21
+            curr_count[group[node]] = 1
 
-            for child in adj[node]:
-                if child == parent:
+            for nei in adj[node]:
+                if nei == parent:
                     continue
-                    
-                cnt = dfs(child,node)
-
-                for i in range(21):
-                    res[i] += cnt[i]
-                    ans += cnt[i] * (total_grp[i] - cnt[i])
-                    
-            res[group[node]] += 1
                 
+                child_count = dfs(nei,node)
+                
+                for i in range(21):
+                    curr_count[i] += child_count[i]
 
-               
+            for i in range(21):
+                res += curr_count[i] * (total_grp[i] - curr_count[i])
 
-            return res 
+            return curr_count
+
 
         dfs(0,-1)
-        return ans
+        return res
 
-            
+                  
 
-                
-                
-                
-            
-        
-            
-           
+
+
 
         
+        
 
-     
-            
 
-            
-            
-            
-            
-        
-        
-            
-        
+
+
+
+
+       
+       
