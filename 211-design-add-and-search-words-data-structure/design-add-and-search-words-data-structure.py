@@ -24,7 +24,6 @@ class WordDictionary:
 
     def search(self, word: str) -> bool:
 
-        node = self.root
         n = len(word)
 
         def dfs(node,i):
@@ -44,10 +43,8 @@ class WordDictionary:
             else:
                 if ch not in node.children:
                     return False
-                if dfs(node.children[ch],i + 1):
-                    return True
-                
-                return False
+                return dfs(node.children[ch],i + 1)
+        
 
         return dfs(self.root,0)
 
