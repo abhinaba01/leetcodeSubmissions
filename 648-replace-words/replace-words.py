@@ -27,20 +27,17 @@ class Trie():
         
         for ch in word:
 
-            if node.is_end == True:
+            if node.is_end:
                 return ans
-            else:
-                if ch not in node.children:
-                    if node.is_end == True:
-                        return ans
-                    else:
-                        return ""
+         
+            if ch not in node.children:
+                return ""
                         
-                else:
-                    ans += ch
-                    node = node.children[ch]
+               
+            ans += ch
+            node = node.children[ch]
             
-        if node.is_end == True:
+        if node.is_end:
             return ans
         else:
             return ""
