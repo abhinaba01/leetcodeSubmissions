@@ -1,6 +1,9 @@
 class Solution:
     def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
 
+
+        #CISCO 
+
         n = len(coins)
 
         adj = defaultdict(list)
@@ -20,7 +23,7 @@ class Solution:
             if degree[i] == 1 and coins[i] == 0:
                 q.append(i)
 
-
+        # remove all coinless leaf
 
         while q:
 
@@ -37,7 +40,7 @@ class Solution:
                 if degree[nei] == 1 and coins[nei] == 0:
                     q.append(nei)
 
-        
+        # remove 2 most bottom layers
 
         q = deque()
 
