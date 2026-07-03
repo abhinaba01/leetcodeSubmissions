@@ -35,18 +35,7 @@ class Solution:
                     q.append(nei)
 
 
-        dp = [INF] * N
-        dp[0] = 0
-
-
-        for u in topo:
-
-            for v , w in adj[u]:
-
-                dp[v] = min(dp[v],dp[u] + w)
-                
-
-        # print(min_edge)
+ 
 
 
 
