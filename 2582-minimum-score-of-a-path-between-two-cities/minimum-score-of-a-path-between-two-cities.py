@@ -11,35 +11,35 @@ class Solution:
             adj[v].append((u,edges))
 
 
-        visited1 = [False] * (N + 1)
-        visited1[1] = True 
+        visited = [False] * (N + 1)
+        visited[1] = True 
 
-        visited2 = [False] * (N + 1)
-        visited2[N] = True
-        
-        def dfs(node,visited):
+        INF = 10 ** 18
+        ans = INF
 
+        def dfs(node):
+
+            nonlocal ans
 
             for nei , wt in adj[node]:
+
+                ans = min(ans , wt)
 
 
                 if visited[nei]:
                     continue
 
                 visited[nei] = True
-                dfs(nei,visited)
+                dfs(nei)
 
 
-        dfs(1,visited1)
-        dfs(n,visited2)
+        dfs(1)
+
+        return ans
+   
 
 
-        roads.sort(key = lambda x:x[2])
-        for u , v , dist in roads:
-            if visited1[u] and visited1[v] and visited2[u] and visited2[v]:
-                return dist
-
-        
+     
 
 
 
