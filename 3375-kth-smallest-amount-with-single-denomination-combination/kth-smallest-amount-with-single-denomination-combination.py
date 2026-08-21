@@ -13,8 +13,6 @@ class Solution:
             total = 0
             cnt = 0
 
-            
-
             for mask in range(1,1 << n):
                                   
                 a = 1
