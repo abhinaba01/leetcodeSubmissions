@@ -39,27 +39,48 @@ class Solution:
         n = len(nums)
         dsu = DSU(n)
 
-        arr = sorted([(num, i) for i, num in enumerate(nums)])
+        pos = defaultdict(list) 
 
-      
-        for i in range(1, n):
-            if arr[i][0] - arr[i - 1][0] <= limit:
-              
-                dsu.union(arr[i][1], arr[i - 1][1])
+        for i , num in enumerate(nums):
+            pos[num].append(i)
 
-       
-        groups = defaultdict(list)
-        for i in range(n):
-            root = dsu.find(i)
-            groups[root].append(i)
+        nums.sort()
 
-        ans = [0] * n
         
-       
-        for root, indices in groups.items():
-            vals = sorted([nums[i] for i in indices])
-          
-            for idx, val in zip(indices, vals):
-                ans[idx] = val
 
-        return ans
+        l , r = 0 , 1
+
+        arr = []
+        while r < n:
+            if abs(nums[r] - nums[r - 1]) > limit:
+                arr.append(nums[l:r])
+                l = r
+
+            r += 1
+
+        arr.append(nums[l:r])
+
+
+        for num in arr:
+
+            indices = []
+
+            for el in num:
+                indices.append(pos[el].pop())
+
+            indices.sort()
+
+            for idx , el in zip(indices,num):
+                nums[idx] = el
+
+
+        
+        return nums
+      
+            
+
+
+                
+
+
+
